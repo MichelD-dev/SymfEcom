@@ -23,6 +23,11 @@ class CommandController extends AbstractController
         //Cette fonction a pour but de nous aider à traiter les différentes commandes de Product passées en tant qu'utilisateur
         //Pour obtenir la liste des commandes et reservations, nous devons faire appel à l'Entity Manager ainsi qu'au Repository pertinent
         $entityManager = $this->getDoctrine()->getManager();
+<<<<<<< HEAD
+=======
+        $categoryRepository = $entityManager->getRepository(Category::class);
+        $categories = $categoryRepository->findAll();
+>>>>>>> develop
         $commandRepository = $entityManager->getRepository(Command::class);
         //Nous récupérons la totalité des commandes avant de déceler celle en mode Panier via une boucle
         $commands = $commandRepository->findByUser($user);
@@ -42,6 +47,10 @@ class CommandController extends AbstractController
             'user' => $user,
             'activeCommand' => $activeCommand,
             'commands' => $pastCommands,
+<<<<<<< HEAD
+=======
+            'categories' => $categories
+>>>>>>> develop
         ]);
     }
 
