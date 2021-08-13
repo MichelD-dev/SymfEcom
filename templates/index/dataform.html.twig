@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire
+	{{ formName }}
+	-
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<div class="w3-container w3-content w3-center w3-padding-64 w3-light-grey" style="margin: 80px auto;" id="dataform">
+		<h2 class="w3-wide w3-margin-bottom ">{{ formName }}</h2>
+		<div class='w3-container w3-card-8 w3-xlarge font'>
+			{{ form(dataForm) }}
+		</div>
+	</div>
+
+	{% endblock %}

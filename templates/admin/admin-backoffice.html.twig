@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+ <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="dashboard">
+    <div class="w3-center">
+      <h1 class="w3-wide">TABLEAU DE BORD</h1>
+			<button class="w3-button w3-light-gray w3-margin-bottom">
+				<a style=" text-decoration: none; color: initial;" href="{{ path('product_create') }}">Nouveau produit</a>
+			</button>
+			<button class="w3-button w3-light-gray w3-margin-bottom">
+				<a style=" text-decoration: none; color: initial;" href="{{ path('tag_create') }}">Nouveau tag</a>
+			</button>
+			<h2 class="w3-wide w3-center">Références produits</h2>
+			<ul class="w3-ul w3-white w3-text-grey">
+				{% for product in products %}
+					<li class="w3-padding">
+						<span>{{ product.name }}</span>
+						<button class="w3-button w3-red" style="float:right;">
+							<a style=" text-decoration: none; color: initial;" href="{{ path('product_update', {'productId': product.id}) }}">Modifier</a>
+						</button>
+						<button class="w3-button w3-blue-gray" style="float:right;">
+							<a style=" text-decoration: none; color: initial;" href="{{ path('product_delete', {'productId': product.id}) }}">Supprimer</a>
+						</button>
+					</li>
+				{% endfor %}
+			</ul>
+			<h2 class="w3-wide w3-center">Liste des tags</h2>
+			<ul class="w3-ul w3-border w3-white w3-text-grey">
+				{% for tag in tags %}
+					<li class="w3-padding">
+						<p class="w3-tag w3-red w3-margin-left">{{ tag.name }}</p>
+						<button class="w3-button w3-red" style="float:right;">
+							<a style=" text-decoration: none; color: initial;" href="{{ path('tag_update', {'tagId': tag.id}) }}">Modifier</a>
+						</button>
+						<button class="w3-button w3-blue-gray" style="float:right;">
+							<a style=" text-decoration: none; color: initial;" href="{{ path('tag_delete', {'tagId': tag.id}) }}">Supprimer</a>
+						</button>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}

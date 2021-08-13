@@ -1,0 +1,27 @@
+Maintenant que nous avons créé notre vue, nous allons créer nos Entity:
+
+Product, Category et Tag
+
+Product
+	Il s'agit ici d'une référence produit proposée à l'utilisateur dans le cadre d'un site e-commerce
+    Attributs:
+    	name			string/255/non null
+        description		 text/non null
+        price			float, non null
+        stock			integer, non null
+        (category)
+        (tags)
+Category
+	Il s'agit d'un élément regroupant les Produits selon un thème particulier
+    Attributs:
+    	name			string/255/non null
+        description		text/non null
+        (product)
+Tag
+	Il s'agit d'un simple qualificatif pouvant être associé à un Product
+    Attributs:
+    	name			string/255/non null
+        (product)
+        
+Créer les trois Entity en utilisant la commande:
+	php bin/console make:entity

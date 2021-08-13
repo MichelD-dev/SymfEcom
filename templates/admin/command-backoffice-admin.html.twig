@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+  <div class="w3-container w3-content w3-padding-64" style="max-width:1000px" id="dashboard">
+    <div class="w3-center">
+      <h1 class="w3-wide">TABLEAU DE BORD ADMINISTRATEUR</h1>
+
+    </div>
+    {% for commandSet in commands %}
+        {% for commandList in commandSet %}
+            {% for command in commandList %}
+                
+                <p><b>Commande du : {{ command.creationDate|date('d/m/Y à G:i:s') }} par {{ command.user.username }}</b></p>
+                <table class="w3-table-all">
+                    <tr>
+                        <th>Utilisateur: 
+                            {{ command.user.username }}
+                        </th>
+                        <th>Prix total: 
+                            {{ command.totalPrice }}€
+                        </th>
+                        <th>Statut: {{ command.status }}</th>
+                        {% if command.status == "panier" %}
+                            <th>
+                                <a href="">
+                                    <button class="w3-button w3-blue-gray w3-margin-bottom">Valider Commande</button>
+                                </a>
+                            </th>
+                            <th>
+                                <a href="">
+                                    <button class="w3-button w3-red w3-margin-bottom">Supprimer Commande</button>
+                                </a>
+                            </th>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix</th>
+                        <th>Date d'ajout au panier</th>
+                        {% if command.status == "panier" %}
+                            <th>Supprimer la Reservation</th>
+                        {% endif %}
+                    </tr>
+                    {% for reservation in command.reservations %}
+                    <tr>
+                        <th>{{ reservation.product.name }}</th>
+                        <th>{{ reservation.quantity }}</th>
+                        <th>{{ reservation.product.price }}€</th>
+                        <th>{{ reservation.creationDate|date('d/m/Y à G:i:s') }}</th>
+                        {% if reservation.command.status == "panier" %}
+                            <th>
+                                <a href="">
+                                    <button class="w3-button w3-red w3-margin-bottom">Supprimer</button>
+                                </a>
+                            </th>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table> 
+            {% endfor %}
+        {% endfor %}
+        <hr><br><br>
+    {% endfor %}
+      
+      
+    
+  </div>
+{% endblock %}

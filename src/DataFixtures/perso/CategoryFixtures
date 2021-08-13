@@ -1,0 +1,34 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Category;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+
+class CategoryFixtures extends Fixture
+{
+    public function load(ObjectManager $manager)
+    {
+        $name = '';
+        $description = '';
+        $productCategories = [
+            ['Armoire' => 'Ceci est une armoire'],
+            ['Bureau' => 'Ceci est un bureau'],
+            ['Canape' => 'Ceci est un canapé'],
+            ['Chaise' => 'Ceci est une chaise'],
+            ['Lit' => 'Ceci est un lit'],
+            ['Autre' => 'Ceci est autre']
+        ];
+
+      foreach ( $productCategories as $key=>$value) {
+            $category = new Category;
+
+            $category->setName($key);
+            $category->setDescription($value);
+            
+            $manager->persist($category);
+        }
+        $manager->flush();
+    }
+}

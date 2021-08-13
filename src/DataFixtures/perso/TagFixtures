@@ -1,0 +1,21 @@
+<?php
+
+namespace App\DataFixtures;
+
+use App\Entity\Product;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+
+class TagFixtures extends Fixture
+{
+    public function load(ObjectManager $manager)
+    {
+        $tags = ['t1', 't2', 't3', 't4', 't5', 't6','t7', 't8', 't9', 't10'];
+        $product = new Product();  
+        $product->addTag($this->tag);
+        // $product = new Product();
+        // $manager->persist($product);
+
+        $manager->flush();
+    }
+}
